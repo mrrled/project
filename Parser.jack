@@ -1,0 +1,45 @@
+class Parser //не работает, потрогай (добавить парсинг отрицательных чисел)
+{
+    static int num;
+
+    function int getLastValue()
+    {
+        return num;
+    }
+
+    function int parseSimpleNumber(String str) //вдруг пригодится
+    {
+        var int num;
+        var int i;
+        let num = 0;
+        let i = 0;
+        while(i < str.length())
+        {
+            let num = (num * 10) + (str.charAt(i) - 48);
+            let i = i + 1;
+        }
+        return num;
+    }
+
+    function boolean isNumber(String str) //если после этого вызвать getLastValue(), то это будет tryParse
+    {
+        var int i;
+        let i = 0;
+        let num = 0;
+        while(i < str.length())
+        {
+            if(str.charAt(i) < 48 | str.charAt(i) > 57) 
+            {
+                return false;
+            } 
+            let num = (num * 10) + (str.charAt(i) - 48);
+            let i = i + 1;
+        }
+        return true;
+    }
+
+    function boolean isCorrectExpression(String str)
+    {
+        return false;
+    }
+}

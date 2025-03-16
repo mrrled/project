@@ -1,0 +1,143 @@
+class Calculator
+{
+    field StackStruct numbers;
+    field StackStruct operators;
+    field int result;
+
+    constructor Calculator new()
+    {
+        let numbers = StackStruct.new();
+        let operators = StackStruct.new();
+        let result = null;
+        return this;
+    }
+
+    method boolean IsStringContainsChar(String str, char c)
+    {
+        var int i;
+        let i = 0;
+        while(i < str.length())
+        {
+            if(str.charAt(i) = c)
+            {
+                return true;
+            }
+            let i = i + 1;
+        }
+        return false;
+    }
+
+    method int getPriority(char c)
+    {
+        var String opers;
+        let opers = "+-*/";
+        if (opers.charAt(0) = c)
+        {
+            return 1;
+        }
+        if (opers.charAt(1) = c)
+        {
+            return 1;
+        }
+        if (opers.charAt(2) = c)
+        {
+            return 2;
+        }
+        if (opers.charAt(3) = c)
+        {
+            return 2;
+        }
+        do opers.dispose();
+        return 0;
+    }
+
+    method void operate()
+    {
+        var String opers;
+        var char c;
+        var int b;
+        var int a;
+        let b = numbers.pop1();
+        let a = numbers.pop1();
+        let c = operators.pop1();
+        let opers = "+-*/";
+        if (opers.charAt(0) = c)
+        {
+            do numbers.push1(a + b);
+        }
+        if (opers.charAt(1) = c)
+        {
+            do numbers.push1(a - b);
+        }
+        if (opers.charAt(2) = c)
+        {
+            do numbers.push1(a * b);
+        }
+        if (opers.charAt(3) = c)
+        {
+            do numbers.push1(a / b);
+        }
+        do opers.dispose();
+        return;
+    }
+
+    method int calculate(Array arr, int size)
+    {
+        var String opers;
+        var int item;
+        var int i;
+        var String brackets;
+        let opers = "+-*/";
+        let brackets = "()";
+        let i = 0;
+        while(i < size)
+        {
+            let item = arr[i];
+            if(IsStringContainsChar(opers, item))
+            {
+                while(~(getPriority(operators.checkHead()) < getPriority(item)))
+                {
+                    do operate();
+                    /*do Output.printString("operated ");
+                    do Output.println();*/
+                }
+                do operators.push1(item);
+                /*do Output.printString("pushed oper ");
+                do Output.printInt(item);
+                do Output.println();*/
+            }
+            else{
+            if(IsStringContainsChar(brackets, item))
+            {
+                if(item = brackets.charAt(0))
+                {
+                    do operators.push1(item);
+                    /*do Output.printString("pushed bracket ");
+                    do Output.println();*/
+                }
+                else
+                {
+                    while(~(operators.checkHead() = brackets.charAt(0)))
+                    {
+                        do operate();
+                        /*do Output.printString("operated ");
+                        do Output.println();*/
+                    }
+                    do operators.pop1();
+                }
+            }
+            else
+            {
+                do numbers.push1(item);
+                /*do Output.printString("pushed num ");
+                do Output.printInt(item);
+                do Output.println();*/
+            }
+            }
+            let i = i + 1;
+        }
+        let result = numbers.pop1();
+        return result;
+        do opers.dispose();
+    }
+}

@@ -1,0 +1,56 @@
+class TableStructure //работает не трогай (хотя можно дополнить получением координат ячеек и прочего)
+{
+    static int instr_w, enum_w, cell_w, cell_selector_w;
+    static int hat_h, cell_h, enum_h;
+    static int scrreen_width, scrreen_height;
+
+    method void setTableParameters()
+    {
+        var int unit;
+        let scrreen_height = 256;
+        let scrreen_width = 512;
+
+        let unit = scrreen_height/ 8;
+
+        let cell_h = unit;
+        let enum_h = unit;
+        let hat_h = unit * 2;
+
+        let instr_w = unit * 3;
+        let enum_w = unit;
+        let cell_selector_w = unit * 2;
+        let cell_w = unit * 3;
+        return;
+    }
+    
+    function void drawTable()
+    {
+        var int curr_w; 
+        var int curr_h;
+        do setTableParameters();
+        do Screen.setColor(true);
+
+        let curr_w = instr_w;
+        do Screen.drawLine(curr_w, 0, curr_w, scrreen_height);
+
+        let curr_w = curr_w + cell_selector_w;
+        do Screen.drawLine(curr_w, 0, curr_w, hat_h);
+
+        let curr_w = instr_w + enum_w;
+        while(curr_w < scrreen_width)
+        {
+            do Screen.drawLine(curr_w, hat_h, curr_w, scrreen_height);
+            let curr_w = curr_w + cell_w;
+        }
+
+        let curr_h = hat_h;
+        do Screen.drawLine(instr_w, curr_h, scrreen_width, curr_h);
+        let curr_h = hat_h + enum_h;
+        while(curr_h < scrreen_height)
+        {
+            do Screen.drawLine(instr_w, curr_h, scrreen_width, curr_h);
+            let curr_h = curr_h + cell_h;
+        }
+        return;
+    }
+}

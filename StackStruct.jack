@@ -1,0 +1,51 @@
+class StackStruct //работает, не трогай. Мб стоит добавить dispose()
+{
+    field StackItem head;
+
+    constructor StackStruct new()
+    {
+        let head = null;
+        return this;
+    }
+
+    method int checkHead()
+    {
+        if(head = null)
+        {
+            return null;
+        }
+        return head.getValue();
+    }
+
+    method int pop1()
+    {
+        var int val;
+        let val = head.getValue();
+        if(head = null)
+        {
+            return null;
+        }
+        if(head.getPrevious() = null)
+        {
+            let head = null; 
+        }
+        else
+        {
+            let head = head.getPrevious();
+        }
+        return val;
+    }
+
+    method void push1(int val)
+    {
+        var StackItem item;
+        let item = StackItem.new(head, val);
+        let head = item;
+        return;
+    }
+
+    method boolean isEmpty()
+    {
+        return head = null;
+    }
+}

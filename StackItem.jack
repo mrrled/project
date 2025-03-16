@@ -1,0 +1,22 @@
+class StackItem //работает, не трогай
+{
+    field StackItem previous;
+    field int value; //можно использовать и для char
+
+    method int getValue()
+    {
+        return value;
+    }
+
+    method StackItem getPrevious()
+    {
+        return previous;
+    }
+
+    constructor StackItem new(StackItem prev, int v)
+    {
+        let previous = prev;
+        let value = v;
+        return this;
+    }
+}
