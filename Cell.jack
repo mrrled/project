@@ -1,25 +1,25 @@
 class Cell
 {
-    field String string_value;
+    field String stringValue;
     field char type;
-    field int int_value;
+    field int intValue;
 
-    constructor Cell new(int int_val, String str_value, char typ)
+    constructor Cell new(int intVal, String strValue, char typ)
     {
-        let int_value = int_val;
-        let string_value = str_value;
+        let intValue = intVal;
+        let stringValue = strValue;
         let type = typ;
         return this;
     }
 
     method String GetString()
     {
-        return string_value;
+        return stringValue;
     }
 
     method int GetInt()
     {
-        return int_value;
+        return intValue;
     }
 
 }
