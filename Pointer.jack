@@ -1,0 +1,47 @@
+class Pointer
+{
+    field int x;
+    field int y;
+
+    constructor Pointer new()
+    {
+        let x = 0;
+        let y = 0;
+        return this;
+    }
+
+    method int GetX()
+    {
+        return x;
+    }
+
+    method int GetY()
+    {
+        return y;
+    }
+
+    method void ToRight()
+    {
+        let x = x + 1;
+        return;
+    }
+
+    method void ToLeft()
+    {
+        let x = x - 1;
+        return;
+    }
+
+    method void ToUp()
+    {
+        let y = y + 1;
+        return;
+    }
+    
+    method void ToDown()
+    {
+        let y = y - 1;
+        return;
+    }
+
+}
