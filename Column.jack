@@ -1,0 +1,12 @@
+class Column
+{
+    field char name;
+    field Array cells;
+
+    constructor Column new(char symbol)
+    {
+        let name = symbol;
+        let cells = Array.new(20);
+        return this;
+    }
+}
