@@ -19,4 +19,27 @@ class Table
         }
         return this;
     }
+
+    method Cell GetCell(int x, int y)
+    {
+        var Array column;
+        let column = columns[x];
+        return column[y];
+    }
+
+    method void WriteIntCell(int value, int x, int y)
+    {
+        var Array column;
+        let column = columns[x];
+        let column[y] = Cell.new(value, "", "s");
+        return;
+    }
+
+    method void WriteStringCell(String value, int x, int y)
+    {
+        var Array column;
+        let column = columns[x];
+        let column[y] = Cell.new(0, value, "s");
+        return;
+    }
 }

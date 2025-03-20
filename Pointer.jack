@@ -42,23 +42,24 @@ class Pointer
         return;
     }
 
-    method void ToUp()
-    {
-        if (y + 1 = countColumn)
-        {
-            return;
-        }
-        let y = y + 1;
-        return;
-    }
-    
-    method void ToDown()
+    method void ToUp()  //инвертировано
     {
         if (y - 1 < 0)
         {
             return;
         }
         let y = y - 1;
+        return;
+        
+    }
+    
+    method void ToDown()
+    {
+        if (y + 1 = countColumn)
+        {
+            return;
+        }
+        let y = y + 1;
         return;
     }
 

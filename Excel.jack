@@ -8,13 +8,16 @@ class Excel
     constructor Excel new()
     {
         let table = Table.new(20, 20);   //не помню, сколько на сколько делаем
+        let pointer = Pointer.new(20);
         let flagEnd = false;
-        let pointer = Pointer.new();
         return this;
     }
 
     method void Run()
     {
+        var int x, y;
+        var String stringValue;
+        var int intValue;
         while (~flagEnd)
         {
             let pressedKey = Keyboard.keyPressed(); //возможно стоит вынести в отдельный метод обработку клавиш
@@ -47,8 +50,23 @@ class Excel
             // {
                 
             // }
-            //надо еще какую-то клавишу для записи чисел и строк
+            if (pressedKey = 119)   //w для чисел
+            {
+                let x = pointer.GetX();
+                let y = pointer.GetY();
+                let intValue = Keyboard.readInt("");
+                do table.WriteIntCell(intValue, x, y);
+            }
+            if (pressedKey = 113)   //q для строк
+            {
+                let x = pointer.GetX();
+                let y = pointer.GetY();
+                let stringValue = Keyboard.readLine("");    //еще надо Output.moveCursor();
+                do table.WriteStringCell(stringValue, x, y);
+            }
         }
         return;
     }
+
+    
 }
