@@ -1,7 +1,5 @@
 class Table
 {
-    field int currentX;
-    field int currentY;
     field Array columns;
 
     constructor Table new(int countColumns, int countRows)
@@ -12,8 +10,6 @@ class Table
 
         let symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         let i = 0;
-        let currentX = 0;
-        let currentY = 0;
         let columns = Array.new(countColumns);
         while(i < countColumns)
         {
