@@ -1,0 +1,54 @@
+class Excel
+{
+    field Table table;
+    field char pressedKey;
+    field boolean flagEnd;
+    field Pointer pointer;
+
+    constructor Excel new()
+    {
+        let table = Table.new(20, 20);   //не помню, сколько на сколько делаем
+        let flagEnd = false;
+        let pointer = Pointer.new();
+        return this;
+    }
+
+    method void Run()
+    {
+        while (~flagEnd)
+        {
+            let pressedKey = Keyboard.keyPressed(); //возможно стоит вынести в отдельный метод обработку клавиш
+            if (pressedKey = 140)   //esc (выйти из программы)
+            {
+                let flagEnd = true;
+            }
+
+            if (pressedKey = 130)   //left arrow
+            {
+                do pointer.ToLeft();
+            }
+
+             if (pressedKey = 132)   //right arrow
+            {
+                do pointer.ToRight();
+            }
+
+             if (pressedKey = 131)   //up arrow
+            {
+                do pointer.ToUp();
+            }
+
+             if (pressedKey = 133)   //down arrow
+            {
+                do pointer.ToDown();
+            }
+
+            // if (pressedKey = 61)    //= для записи выражений
+            // {
+                
+            // }
+            //надо еще какую-то клавишу для записи чисел и строк
+        }
+        return;
+    }
+}
