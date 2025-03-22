@@ -20,14 +20,14 @@ class Table
         return this;
     }
 
-    method Cell GetCell(int x, int y)
+    method Cell getCell(int x, int y)
     {
         var Array column;
         let column = columns[x];
         return column[y];
     }
 
-    method void WriteIntCell(int value, int x, int y)
+    method void writeIntCell(int value, int x, int y)
     {
         var Array column;
         let column = columns[x];
@@ -35,7 +35,7 @@ class Table
         return;
     }
 
-    method void WriteStringCell(String value, int x, int y)
+    method void writeStringCell(String value, int x, int y)
     {
         var Array column;
         let column = columns[x];

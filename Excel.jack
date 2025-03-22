@@ -31,33 +31,33 @@ class Excel
 
             if (pressedKey = 130)   //left arrow
             {
-                do pointer.ToLeft();
-                let x = pointer.GetX();
-                let y = pointer.GetY();
+                do pointer.toLeft();
+                let x = pointer.getX();
+                let y = pointer.getY();
                 do CellSelector.selectNext(x, y);
             }
 
              if (pressedKey = 132)   //right arrow
             {
-                do pointer.ToRight();
-                let x = pointer.GetX();
-                let y = pointer.GetY();
+                do pointer.toRight();
+                let x = pointer.getX();
+                let y = pointer.getY();
                 do CellSelector.selectNext(x, y);
             }
 
              if (pressedKey = 131)   //up arrow
             {
-                do pointer.ToUp();
-                let x = pointer.GetX();
-                let y = pointer.GetY();
+                do pointer.toUp();
+                let x = pointer.getX();
+                let y = pointer.getY();
                 do CellSelector.selectNext(x, y);
             }
 
              if (pressedKey = 133)   //down arrow
             {
-                do pointer.ToDown();
-                let x = pointer.GetX();
-                let y = pointer.GetY();
+                do pointer.toDown();
+                let x = pointer.getX();
+                let y = pointer.getY();
                 do CellSelector.selectNext(x, y);
             }
 
@@ -67,17 +67,17 @@ class Excel
             // }
             if (pressedKey = 119)   //w для чисел
             {
-                let x = pointer.GetX();
-                let y = pointer.GetY();
+                let x = pointer.getX();
+                let y = pointer.getY();
                 let intValue = Keyboard.readInt("");
-                do table.WriteIntCell(intValue, x, y);
+                do table.writeIntCell(intValue, x, y);
             }
             if (pressedKey = 113)   //q для строк
             {
-                let x = pointer.GetX();
-                let y = pointer.GetY();
+                let x = pointer.getX();
+                let y = pointer.getY();
                 let stringValue = Keyboard.readLine("");    //еще надо Output.moveCursor();
-                do table.WriteStringCell(stringValue, x, y);
+                do table.writeStringCell(stringValue, x, y);
             }
             do Sys.wait(80);
         }

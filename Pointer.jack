@@ -14,17 +14,17 @@ class Pointer
         return this;
     }
 
-    method int GetX()
+    method int getX()
     {
         return x;
     }
 
-    method int GetY()
+    method int getY()
     {
         return y;
     }
 
-    method void ToRight()
+    method void toRight()
     {
         if (x + 1 = countColumns)
         {
@@ -34,7 +34,7 @@ class Pointer
         return;
     }
 
-    method void ToLeft()
+    method void toLeft()
     {
         if (x - 1 < 0)
         {
@@ -44,7 +44,7 @@ class Pointer
         return;
     }
 
-    method void ToUp()  //инвертировано
+    method void toUp()  //инвертировано
     {
         if (y - 1 < 0)
         {
@@ -55,7 +55,7 @@ class Pointer
         
     }
     
-    method void ToDown()
+    method void toDown()
     {
         if (y + 1 = countRows)
         {
