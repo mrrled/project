@@ -36,8 +36,11 @@ class CellSelector
     function void selectNext(int x, int y)
     {
         do CellSelector.drawSelected(false);
-        let x_t = x;
-        let y_t = y;
+        if((x < 5) & (y < 6) & (x > -1) & (y > -1))
+        {
+            let x_t = x;
+            let y_t = y;
+        }
         do CellSelector.drawSelected(true);
         do CellSelector.drawCharNumberCell(x, y);
         return;

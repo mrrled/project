@@ -1,0 +1,125 @@
+class IntList {
+    field IntListItem start;
+    field IntListItem end;
+    field int length;
+
+    constructor IntList new(){
+        let length = 0;
+        let start = null;
+        let end = null;
+        return this;
+    }
+
+    method void add(int data){
+        var IntListItem prev;
+        if (start = null){
+            let start = IntListItem.new(data, null, null, 0);
+            let end = start;
+        }
+        else{
+            let prev = end;
+            let end = IntListItem.new(data, null, end, end.getIndex() + 1);
+            do prev.setNext(end);
+        }
+        let length = length + 1;
+        return;
+    }
+
+    method void removeAtLast(){
+        var IntListItem last;
+        if (end = null){
+            return;
+            //Нужно прописать ошибку
+        }
+        if (end = start){
+            let last = end;
+            let end = null;
+            let start = null;
+            do last.dispose();
+            return;
+        }
+        let last = end;
+        let end = end.getPrev();
+        if (~(end = null)){
+            do end.setNext(null);
+        }
+        do last.dispose();
+        let length = length - 1;
+        return;
+    }
+
+    method void changeAtIndex(int i, int changed_data){
+        var IntListItem current;
+        var int current_index;
+
+        let current = start;
+        let current_index = 0;
+        if (i > length | i = length){
+            return;
+        }
+        while(current_index < i){
+            let current = current.getNext();
+            let current_index = current_index + 1;
+        }
+        do current.setData(changed_data);
+        return;
+    }
+
+    method int takeAtIndex(int i){
+        var IntListItem current;
+        var int current_index;
+
+        let current = start;
+        let current_index = 0;
+        if (i > length | i = length){
+            do Sys.error(15);
+        }
+        while(current_index < i){
+            let current = current.getNext();
+            let current_index = current_index + 1;
+        }
+        return current.getData();
+    }
+
+    method void dispose(){
+        var IntListItem current;
+        let current = start;
+        while (~(start = null)){
+            let start = start.getNext();
+            do current.dispose();
+            let current = start;
+        }
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void print(){
+        var IntListItem current;
+        let current = start;
+        while (~(current = null)){
+            do Output.printInt(current.getData());
+            do Output.printChar(32);
+            let current = current.getNext();
+        }
+        return;
+    }
+
+    method Array toArray(){
+        var Array result;
+        var IntListItem current;
+        let result = Array.new(length);
+        let current = start;
+        while (~(current = null)){
+            //do Output.printInt(current.getData());
+            let result[current.getIndex()] = current.getData();
+            let current = current.getNext();
+        }
+        do Output.printString(" ");
+        return result;
+    }
+    
+    method int getLength()
+    {
+        return length;
+    }
+}

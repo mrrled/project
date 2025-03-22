@@ -19,4 +19,9 @@ class StackItem //работает, не трогай
         let value = v;
         return this;
     }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
 }

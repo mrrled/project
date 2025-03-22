@@ -140,4 +140,11 @@ class Calculator
         return result;
         do opers.dispose();
     }
+
+    method void dispose(){
+        do numbers.dispose();
+        do operators.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
 }

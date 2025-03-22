@@ -1,0 +1,50 @@
+class IntListItem{
+    field int data;
+    field IntListItem next;
+    field IntListItem prev;
+    field int index;
+
+    constructor IntListItem new(int d, IntListItem n, IntListItem p, int i){
+        let data = d;
+        let next = n;
+        let prev = p;
+        let index = i;
+        return this;
+    }
+
+    method int getIndex(){
+        return index;
+    }
+
+    method IntListItem getNext(){
+        return next;
+    }
+
+    method int getPrev(){
+        return prev;
+    }
+
+    method void setNext(IntListItem n){
+        let next = n;
+        return;
+    }
+
+    method void setPrev(IntListItem n){
+        let prev = n;
+        return;
+    }
+
+    method void setData(int d){
+        let data = d;
+        return;
+    }
+
+    method int getData(){
+        return data;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+}

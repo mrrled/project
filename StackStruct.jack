@@ -27,10 +27,12 @@ class StackStruct //работает, не трогай. Мб стоит доб�
         }
         if(head.getPrevious() = null)
         {
+            do head.dispose();
             let head = null; 
         }
         else
         {
+            do head.dispose();
             let head = head.getPrevious();
         }
         return val;
@@ -47,5 +49,17 @@ class StackStruct //работает, не трогай. Мб стоит доб�
     method boolean isEmpty()
     {
         return head = null;
+    }
+
+    method void dispose()
+    {
+        var int count;
+        let count = 0;
+        while(~(pop1() = null))
+        {
+            let count = count + 1;
+        }
+        do Memory.deAlloc(this);
+        return;
     }
 }
