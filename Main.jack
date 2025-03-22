@@ -1,8 +1,7 @@
 class Main {
     function void main() {
-        var Excel e;
-        let e = Excel.new();
-        do e.Run();
+        do Excel.start();
+        do Excel.run();
         return;
     }
 }

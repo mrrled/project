@@ -1,21 +1,21 @@
 class Excel
 {
-    field Table table;
-    field char pressedKey;
-    field boolean flagEnd;
-    field Pointer pointer;
+    static Table table;
+    static char pressedKey;
+    static boolean flagEnd;
+    static Pointer pointer;
 
-    constructor Excel new()
+    function void start()
     {
         let table = Table.new(4, 5);
         let pointer = Pointer.new(4, 5);
         let flagEnd = false;
         do TableStructure.drawTable();
         do StartInstruction.draw();
-        return this;
+        return;
     }
 
-    method void Run()
+    function void run()
     {
         var int x, y;
         var String stringValue;
