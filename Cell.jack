@@ -12,14 +12,20 @@ class Cell
         return this;
     }
 
-    method String GetString()
+    method String getString()
     {
         return stringValue;
     }
 
-    method int GetInt()
+    method int getInt()
     {
         return intValue;
+    }
+
+    method void dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
     }
 
 }
