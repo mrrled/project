@@ -1,0 +1,57 @@
+class CellSelector
+{
+    static int x_t;
+    static int y_t;
+    static int start_x;
+    static int start_y;
+    static String chars;
+
+    function void start()
+    {
+        let x_t = 0;
+        let y_t = 0;
+        let start_x = 128;
+        let start_y = 96;
+        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        do CellSelector.drawSelected(true);
+        do CellSelector.drawCharNumberCell(x_t, y_t);
+        return;
+    }
+
+    function void drawSelected(boolean isDraw)
+    {
+        var int x1, x2, y1, y2;
+        do Screen.setColor(isDraw);
+        let x1 = start_x + (x_t * 3 * 32) + 2;
+        let x2 = start_x + (((x_t * 3) + 3) * 32) - 2;
+        let y1 = start_y + (y_t * 32) + 2;
+        let y2 = start_y + ((y_t + 1) * 32) - 2;
+        do Screen.drawLine(x1, y1, x2, y1);
+        do Screen.drawLine(x2, y1, x2, y2);
+        do Screen.drawLine(x2, y2, x1, y2);
+        do Screen.drawLine(x1, y2, x1, y1);
+        return;
+    }
+
+    function void selectNext(int x, int y)
+    {
+        do CellSelector.drawSelected(false);
+        let x_t = x;
+        let y_t = y;
+        do CellSelector.drawSelected(true);
+        do CellSelector.drawCharNumberCell(x, y);
+        return;
+    }
+
+    function void drawCharNumberCell(int x, int y)
+    {
+        var char selected;
+        var int y_n;
+        let y_n = y + 1;
+        let selected = chars.charAt(x);
+        do Output.moveCursor(2, 15);
+        do Output.printChar(selected);
+        do Output.printInt(y_n);
+        return;
+    }
+}
