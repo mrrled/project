@@ -7,9 +7,11 @@ class Excel
 
     constructor Excel new()
     {
-        let table = Table.new(20, 20);   //не помню, сколько на сколько делаем
-        let pointer = Pointer.new(20);
+        let table = Table.new(4, 5);
+        let pointer = Pointer.new(4, 5);
         let flagEnd = false;
+        do TableStructure.drawTable();
+        do StartInstruction.draw();
         return this;
     }
 
@@ -18,6 +20,7 @@ class Excel
         var int x, y;
         var String stringValue;
         var int intValue;
+        do CellSelector.start();
         while (~flagEnd)
         {
             let pressedKey = Keyboard.keyPressed(); //возможно стоит вынести в отдельный метод обработку клавиш
@@ -29,21 +32,33 @@ class Excel
             if (pressedKey = 130)   //left arrow
             {
                 do pointer.ToLeft();
+                let x = pointer.GetX();
+                let y = pointer.GetY();
+                do CellSelector.selectNext(x, y);
             }
 
              if (pressedKey = 132)   //right arrow
             {
                 do pointer.ToRight();
+                let x = pointer.GetX();
+                let y = pointer.GetY();
+                do CellSelector.selectNext(x, y);
             }
 
              if (pressedKey = 131)   //up arrow
             {
                 do pointer.ToUp();
+                let x = pointer.GetX();
+                let y = pointer.GetY();
+                do CellSelector.selectNext(x, y);
             }
 
              if (pressedKey = 133)   //down arrow
             {
                 do pointer.ToDown();
+                let x = pointer.GetX();
+                let y = pointer.GetY();
+                do CellSelector.selectNext(x, y);
             }
 
             // if (pressedKey = 61)    //= для записи выражений
@@ -64,6 +79,7 @@ class Excel
                 let stringValue = Keyboard.readLine("");    //еще надо Output.moveCursor();
                 do table.WriteStringCell(stringValue, x, y);
             }
+            do Sys.wait(80);
         }
         return;
     }
