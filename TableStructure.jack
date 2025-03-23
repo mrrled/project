@@ -22,6 +22,42 @@ class TableStructure //работает не трогай (хотя можно �
         let cell_w = unit * 3;
         return;
     }
+
+    function void writeEnumsX()
+    {
+        var int i;
+        var int positionX;
+        var int positionY;
+        let i = 1;
+        let positionY = 10;
+        let positionX = 14;
+        while(i < 6)
+        {
+            do Output.moveCursor(positionY, positionX);
+            do Output.printInt(i);
+            let positionY = positionY + 3;
+            let i = i + 1;
+        }
+        return;
+    }
+
+    function void writeEnumsY()
+    {
+        var int i;
+        var int positionX;
+        var int positionY;
+        let i = 0;
+        let positionY = 7;
+        let positionX = 21;
+        while(i < 4)
+        {
+            do Output.moveCursor(positionY, positionX);
+            do Output.printChar(65 + i);
+            let positionX = positionX + 12;
+            let i = i + 1;
+        }
+        return;
+    }
     
     function void drawTable()
     {
@@ -51,6 +87,9 @@ class TableStructure //работает не трогай (хотя можно �
             do Screen.drawLine(instr_w, curr_h, scrreen_width, curr_h);
             let curr_h = curr_h + cell_h;
         }
+
+        do TableStructure.writeEnumsY();
+        do TableStructure.writeEnumsX();
         return;
     }
 }
