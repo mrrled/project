@@ -81,6 +81,7 @@ class Excel
                 let x = pointer.getX();
                 let y = pointer.getY();
                 do CellSelector.drawEmptyCell(x, y);
+                do Screen.drawRectangle(163, 0, 512, 60);
                 do Output.moveCursor(2, 21);
                 let stringValue = Keyboard.readLine("");
                 if (Parser.isCorrectExpression(stringValue) = true)

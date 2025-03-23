@@ -63,7 +63,7 @@ class CellSelector
     {
         do Screen.setColor(false);
         do Screen.drawRectangle(163, 0, 512, 60);
-        if (~(type = null))
+        if (type = 101)
         {
             do Output.moveCursor(2, 21);
             do Output.printString(stringValue);
