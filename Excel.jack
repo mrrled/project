@@ -115,7 +115,7 @@ class Excel
                 }
                 let pressedKey = 0;
             }
-            do Sys.wait(100);
+            do Sys.wait(70);
         }
         return;
     }
