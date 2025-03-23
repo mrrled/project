@@ -66,7 +66,7 @@ class Parser //не работает, потрогай (добавить пар�
         }
         
         do opers.dispose();
-        let opers = "+-*/";
+        let opers = "+-*/()";
 
         do list.add(opers.charAt(4));
         while(i < str.length())
