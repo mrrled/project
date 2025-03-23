@@ -53,9 +53,21 @@ class Parser //не работает, потрогай (добавить пар�
 
         let calc = Calculator.new();
         let list = IntList.new();
-        let opers = "+-*/()";
+        let opers = "=";
         let currentNum = null;
-        let i = 0;
+        let i = 1;
+        
+        if(~(str.charAt(0) = opers.charAt(0)))
+        {
+            do opers.dispose();
+            do calc.dispose();
+            do list.dispose();
+            return false;
+        }
+        
+        do opers.dispose();
+        let opers = "+-*/";
+
         do list.add(opers.charAt(4));
         while(i < str.length())
         {
@@ -75,6 +87,9 @@ class Parser //не работает, потрогай (добавить пар�
                     //do Output.println();
                     if(~(currentNum = null))
                     {
+                        do opers.dispose();
+                        do calc.dispose();
+                        do list.dispose();
                         return false;
                     }
                 }
@@ -109,6 +124,9 @@ class Parser //не работает, потрогай (добавить пар�
             }
             else
             {
+                do opers.dispose();
+                do calc.dispose();
+                do list.dispose();
                 return false;
             }
         }
@@ -121,6 +139,8 @@ class Parser //не работает, потрогай (добавить пар�
         let arr = list.toArray();
         let num = calc.calculate(arr, list.getLength());
         do calc.dispose();
+        do opers.dispose();
+        do list.dispose();
         return true;
     }
 }
