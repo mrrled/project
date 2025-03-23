@@ -12,6 +12,11 @@ class Cell
         return this;
     }
 
+    method char getType()
+    {
+        return type;
+    }
+
     method String getString()
     {
         return stringValue;

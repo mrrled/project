@@ -20,6 +20,9 @@ class Excel
         var int x, y;
         var String stringValue;
         var int intValue;
+        var Cell cell;
+        var char type;
+        var String str;
         do CellSelector.start();
         while (~flagEnd)
         {
@@ -34,7 +37,10 @@ class Excel
                 do pointer.toLeft();
                 let x = pointer.getX();
                 let y = pointer.getY();
-                do CellSelector.selectNext(x, y);
+                let cell = table.getCell(x, y);
+                let type = cell.getType();
+                let str = cell.getString();
+                do CellSelector.selectNext(x, y, type, str);
             }
 
              if (pressedKey = 132)   //right arrow
@@ -42,7 +48,10 @@ class Excel
                 do pointer.toRight();
                 let x = pointer.getX();
                 let y = pointer.getY();
-                do CellSelector.selectNext(x, y);
+                let cell = table.getCell(x, y);
+                let type = cell.getType();
+                let str = cell.getString();
+                do CellSelector.selectNext(x, y, type, str);
             }
 
              if (pressedKey = 131)   //up arrow
@@ -50,7 +59,10 @@ class Excel
                 do pointer.toUp();
                 let x = pointer.getX();
                 let y = pointer.getY();
-                do CellSelector.selectNext(x, y);
+                let cell = table.getCell(x, y);
+                let type = cell.getType();
+                let str = cell.getString();
+                do CellSelector.selectNext(x, y, type, str);
             }
 
              if (pressedKey = 133)   //down arrow
@@ -58,28 +70,51 @@ class Excel
                 do pointer.toDown();
                 let x = pointer.getX();
                 let y = pointer.getY();
-                do CellSelector.selectNext(x, y);
+                let cell = table.getCell(x, y);
+                let type = cell.getType();
+                let str = cell.getString();
+                do CellSelector.selectNext(x, y, type, str);
             }
 
-            // if (pressedKey = 61)    //= для записи выражений
-            // {
+            if (pressedKey = 61)    //= для записи выражений
+            {
+                let x = pointer.getX();
+                let y = pointer.getY();
+                do CellSelector.drawEmptyCell(x, y);
+                do Output.moveCursor(2, 21);
+                let stringValue = Keyboard.readLine("");
+                if (Parser.isCorrectExpression(stringValue) = true)
+                {
+                    do Output.moveCursor(3 * y + 10, x * 12 + 17);
+                    let intValue = Parser.getLastValue();
+                    do Output.printInt(intValue);
+                    do table.writeExpression(intValue, stringValue, x, y);
+                }
                 
-            // }
-            if (pressedKey = 119)   //w для чисел
+                let pressedKey = 0;
+            }
+            if (pressedKey = 119)   //w - write
             {
                 let x = pointer.getX();
                 let y = pointer.getY();
-                let intValue = Keyboard.readInt("");
-                do table.writeIntCell(intValue, x, y);
+                do CellSelector.drawEmptyCell(x, y);
+                do Output.moveCursor(3 * y + 10, x * 12 + 17);
+                let stringValue = Keyboard.readLine("");
+                if (Parser.isNumber(stringValue) = true)
+                {
+                    let intValue = Parser.getLastValue();
+                    do table.writeIntCell(intValue, x, y);
+                    do CellSelector.drawEmptyCell(x, y);
+                    do Output.moveCursor(3 * y + 10, x * 12 + 17);
+                    do Output.printInt(intValue);
+                }
+                else
+                {
+                    do table.writeStringCell(stringValue, x, y);
+                }
+                let pressedKey = 0;
             }
-            if (pressedKey = 113)   //q для строк
-            {
-                let x = pointer.getX();
-                let y = pointer.getY();
-                let stringValue = Keyboard.readLine("");    //еще надо Output.moveCursor();
-                do table.writeStringCell(stringValue, x, y);
-            }
-            do Sys.wait(80);
+            do Sys.wait(100);
         }
         return;
     }

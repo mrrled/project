@@ -14,7 +14,7 @@ class CellSelector
         let start_y = 96;
         let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         do CellSelector.drawSelected(true);
-        do CellSelector.drawCharNumberCell(x_t, y_t);
+        do CellSelector.drawCharNumberCell();
         return;
     }
 
@@ -33,7 +33,7 @@ class CellSelector
         return;
     }
 
-    function void selectNext(int x, int y)
+    function void selectNext(int x, int y, char type, String stringValue)
     {
         do CellSelector.drawSelected(false);
         if((x < 5) & (y < 6) & (x > -1) & (y > -1))
@@ -42,19 +42,44 @@ class CellSelector
             let y_t = y;
         }
         do CellSelector.drawSelected(true);
-        do CellSelector.drawCharNumberCell(x, y);
+        do CellSelector.drawCharNumberCell();
+        do CellSelector.drawExpression(type, stringValue);
         return;
     }
 
-    function void drawCharNumberCell(int x, int y)
+    function void drawCharNumberCell()
     {
         var char selected;
         var int y_n;
-        let y_n = y + 1;
-        let selected = chars.charAt(x);
+        let y_n = y_t + 1;
+        let selected = chars.charAt(x_t);
         do Output.moveCursor(2, 15);
         do Output.printChar(selected);
         do Output.printInt(y_n);
+        return;
+    }
+
+    function void drawExpression(char type, String stringValue)
+    {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(163, 0, 512, 60);
+        if (~(type = null))
+        {
+            do Output.moveCursor(2, 21);
+            do Output.printString(stringValue);
+        }
+        return;
+    }
+
+    function void drawEmptyCell(int x, int y)
+    {
+        var int x1, x2, y1, y2;
+        do Screen.setColor(false);
+        let x1 = start_x + (x * 3 * 32) + 2;
+        let x2 = start_x + (((x * 3) + 3) * 32) - 2;
+        let y1 = start_y + (y * 32) + 2;
+        let y2 = start_y + ((y + 1) * 32) - 2;
+        do Screen.drawRectangle(x1 + 1, y1 + 1, x2 - 1, y2 - 1);
         return;
     }
 }

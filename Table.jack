@@ -27,6 +27,14 @@ class Table
         return column[y];
     }
 
+    method void writeExpression(int value, String str, int x, int y)
+    {
+        var Array column;
+        let column = column[x];
+        let column[y] = Cell.new(value, str, "e");
+        return;
+    }
+
     method void writeIntCell(int value, int x, int y)
     {
         var Array column;
