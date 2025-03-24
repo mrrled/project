@@ -1,0 +1,293 @@
+function Parser.getLastValue 0
+    push static 0
+    return
+function Parser.getLastArr 0
+    push static 1
+    return
+function Parser.parseSimpleNumber 2
+    push constant 0
+    pop local 0
+    push constant 0
+    pop local 1
+label Parser_0
+    push local 1
+    push argument 0
+    call String.length 1
+    lt
+    not
+    if-goto Parser_1
+    push local 0
+    push constant 10
+    call Math.multiply 2
+    push argument 0
+    push local 1
+    call String.charAt 2
+    push constant 48
+    sub
+    add
+    pop local 0
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto Parser_0
+label Parser_1
+    push local 0
+    return
+function Parser.isNumber 1
+    push constant 0
+    pop local 0
+    push constant 0
+    pop static 0
+label Parser_2
+    push local 0
+    push argument 0
+    call String.length 1
+    lt
+    not
+    if-goto Parser_3
+    push argument 0
+    push local 0
+    call String.charAt 2
+    push constant 48
+    lt
+    push argument 0
+    push local 0
+    call String.charAt 2
+    or
+    push constant 57
+    gt
+    not
+    if-goto Parser_5
+    push constant 0
+    return
+    goto Parser_4
+label Parser_5
+label Parser_4
+    push static 0
+    push constant 10
+    call Math.multiply 2
+    push argument 0
+    push local 0
+    call String.charAt 2
+    push constant 48
+    sub
+    add
+    pop static 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Parser_2
+label Parser_3
+    push constant 1
+    neg
+    return
+function Parser.isCorrectExpression 5
+    call Calculator.new 0
+    pop local 4
+    call IntList.new 0
+    pop local 2
+    push constant 1
+    call String.new 1
+    push constant 61
+    call String.appendChar 2
+    pop local 0
+    push constant 0
+    pop local 1
+    push constant 1
+    pop local 3
+    push argument 0
+    push constant 0
+    call String.charAt 2
+    push local 0
+    push constant 0
+    call String.charAt 2
+    eq
+    not
+    not
+    if-goto Parser_7
+    push local 0
+    call String.dispose 1
+    pop temp 0
+    push local 4
+    call Calculator.dispose 1
+    pop temp 0
+    push local 2
+    call IntList.dispose 1
+    pop temp 0
+    push constant 0
+    return
+    goto Parser_6
+label Parser_7
+label Parser_6
+    push local 0
+    call String.dispose 1
+    pop temp 0
+    push constant 6
+    call String.new 1
+    push constant 43
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 42
+    call String.appendChar 2
+    push constant 47
+    call String.appendChar 2
+    push constant 40
+    call String.appendChar 2
+    push constant 41
+    call String.appendChar 2
+    pop local 0
+    push local 2
+    push local 0
+    push constant 4
+    call String.charAt 2
+    call IntList.add 2
+    pop temp 0
+label Parser_8
+    push local 3
+    push argument 0
+    call String.length 1
+    lt
+    not
+    if-goto Parser_9
+    push local 4
+    push local 0
+    push argument 0
+    push local 3
+    call String.charAt 2
+    call Calculator.IsStringContainsChar 3
+    not
+    if-goto Parser_11
+    push local 1
+    call Parser.isNumber 1
+    push local 1
+    push constant 0
+    eq
+    not
+    and
+    not
+    if-goto Parser_13
+    push local 2
+    push static 0
+    call IntList.add 2
+    pop temp 0
+    goto Parser_12
+label Parser_13
+    push local 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto Parser_15
+    push local 0
+    call String.dispose 1
+    pop temp 0
+    push local 4
+    call Calculator.dispose 1
+    pop temp 0
+    push local 2
+    call IntList.dispose 1
+    pop temp 0
+    push constant 0
+    return
+    goto Parser_14
+label Parser_15
+label Parser_14
+label Parser_12
+    push local 1
+    call String.dispose 1
+    pop temp 0
+    push constant 0
+    pop local 1
+    push local 2
+    push argument 0
+    push local 3
+    call String.charAt 2
+    call IntList.add 2
+    pop temp 0
+    goto Parser_10
+label Parser_11
+    push local 1
+    push constant 0
+    eq
+    not
+    if-goto Parser_17
+    push constant 10
+    call String.new 1
+    pop local 1
+    goto Parser_16
+label Parser_17
+label Parser_16
+    push local 1
+    push argument 0
+    push local 3
+    call String.charAt 2
+    call String.appendChar 2
+    pop temp 0
+label Parser_10
+    push local 3
+    push constant 1
+    add
+    pop local 3
+    goto Parser_8
+label Parser_9
+    push local 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto Parser_19
+    push local 1
+    call Parser.isNumber 1
+    not
+    if-goto Parser_21
+    push local 2
+    push static 0
+    call IntList.add 2
+    pop temp 0
+    goto Parser_20
+label Parser_21
+    push local 0
+    call String.dispose 1
+    pop temp 0
+    push local 4
+    call Calculator.dispose 1
+    pop temp 0
+    push local 2
+    call IntList.dispose 1
+    pop temp 0
+    push constant 0
+    return
+label Parser_20
+    goto Parser_18
+label Parser_19
+label Parser_18
+    push local 2
+    push local 0
+    push constant 5
+    call String.charAt 2
+    call IntList.add 2
+    pop temp 0
+    push local 2
+    call IntList.toArray 1
+    pop static 1
+    push local 4
+    push static 1
+    push local 2
+    call IntList.getLength 1
+    call Calculator.calculate 3
+    pop static 0
+    push local 4
+    call Calculator.dispose 1
+    pop temp 0
+    push local 0
+    call String.dispose 1
+    pop temp 0
+    push local 2
+    call IntList.dispose 1
+    pop temp 0
+    push constant 1
+    neg
+    return

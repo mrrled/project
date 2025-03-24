@@ -1,0 +1,174 @@
+function Table.new 3
+    push constant 1
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 26
+    call String.new 1
+    push constant 65
+    call String.appendChar 2
+    push constant 66
+    call String.appendChar 2
+    push constant 67
+    call String.appendChar 2
+    push constant 68
+    call String.appendChar 2
+    push constant 69
+    call String.appendChar 2
+    push constant 70
+    call String.appendChar 2
+    push constant 71
+    call String.appendChar 2
+    push constant 72
+    call String.appendChar 2
+    push constant 73
+    call String.appendChar 2
+    push constant 74
+    call String.appendChar 2
+    push constant 75
+    call String.appendChar 2
+    push constant 76
+    call String.appendChar 2
+    push constant 77
+    call String.appendChar 2
+    push constant 78
+    call String.appendChar 2
+    push constant 79
+    call String.appendChar 2
+    push constant 80
+    call String.appendChar 2
+    push constant 81
+    call String.appendChar 2
+    push constant 82
+    call String.appendChar 2
+    push constant 83
+    call String.appendChar 2
+    push constant 84
+    call String.appendChar 2
+    push constant 85
+    call String.appendChar 2
+    push constant 86
+    call String.appendChar 2
+    push constant 87
+    call String.appendChar 2
+    push constant 88
+    call String.appendChar 2
+    push constant 89
+    call String.appendChar 2
+    push constant 90
+    call String.appendChar 2
+    pop local 1
+    push constant 0
+    pop local 0
+    push argument 0
+    call Array.new 1
+    pop this 0
+label Table_0
+    push local 0
+    push argument 0
+    lt
+    not
+    if-goto Table_1
+    push local 1
+    push local 0
+    call String.charAt 2
+    pop local 2
+    push local 0
+    push this 0
+    add
+    push local 2
+    push argument 1
+    call Column.new 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Table_0
+label Table_1
+    push pointer 0
+    return
+function Table.getCell 1
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 0
+    push argument 2
+    push local 0
+    add
+    pop pointer 1
+    push that 0
+    return
+function Table.writeExpression 1
+    push argument 0
+    pop pointer 0
+    push argument 3
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 0
+    push argument 4
+    push local 0
+    add
+    push argument 1
+    push argument 2
+    push constant 101
+    call Cell.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 0
+    return
+function Table.writeIntCell 1
+    push argument 0
+    pop pointer 0
+    push argument 2
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 0
+    push argument 3
+    push local 0
+    add
+    push argument 1
+    push constant 0
+    call String.new 1
+    push constant 115
+    call Cell.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 0
+    return
+function Table.writeStringCell 1
+    push argument 0
+    pop pointer 0
+    push argument 2
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 0
+    push argument 3
+    push local 0
+    add
+    push constant 0
+    push argument 1
+    push constant 115
+    call Cell.new 3
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push constant 0
+    return

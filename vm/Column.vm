@@ -4,5 +4,8 @@ function Column.new 0
     pop pointer 0
     push argument 0
     pop this 0
+    push argument 1
+    call Array.new 1
+    pop this 1
     push pointer 0
     return

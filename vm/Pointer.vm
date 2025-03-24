@@ -1,0 +1,108 @@
+function Pointer.new 0
+    push constant 4
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 2
+    push argument 1
+    pop this 3
+    push constant 0
+    pop this 0
+    push constant 0
+    pop this 1
+    push pointer 0
+    return
+function Pointer.getX 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function Pointer.getY 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Pointer.toRight 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 1
+    add
+    push this 2
+    eq
+    not
+    if-goto Pointer_1
+    push constant 0
+    return
+    goto Pointer_0
+label Pointer_1
+label Pointer_0
+    push this 0
+    push constant 1
+    add
+    pop this 0
+    push constant 0
+    return
+function Pointer.toLeft 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 1
+    sub
+    push constant 0
+    lt
+    not
+    if-goto Pointer_3
+    push constant 0
+    return
+    goto Pointer_2
+label Pointer_3
+label Pointer_2
+    push this 0
+    push constant 1
+    sub
+    pop this 0
+    push constant 0
+    return
+function Pointer.toUp 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    push constant 1
+    sub
+    push constant 0
+    lt
+    not
+    if-goto Pointer_5
+    push constant 0
+    return
+    goto Pointer_4
+label Pointer_5
+label Pointer_4
+    push this 1
+    push constant 1
+    sub
+    pop this 1
+    push constant 0
+    return
+function Pointer.toDown 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    push constant 1
+    add
+    push this 3
+    eq
+    not
+    if-goto Pointer_7
+    push constant 0
+    return
+    goto Pointer_6
+label Pointer_7
+label Pointer_6
+    push this 1
+    push constant 1
+    add
+    pop this 1
+    push constant 0
+    return

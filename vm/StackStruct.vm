@@ -1,0 +1,104 @@
+function StackStruct.new 0
+    push constant 1
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 0
+    pop this 0
+    push pointer 0
+    return
+function StackStruct.checkHead 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 0
+    eq
+    not
+    if-goto StackStruct_1
+    push constant 0
+    return
+    goto StackStruct_0
+label StackStruct_1
+label StackStruct_0
+    push this 0
+    call StackItem.getValue 1
+    return
+function StackStruct.pop1 1
+    push argument 0
+    pop pointer 0
+    push this 0
+    call StackItem.getValue 1
+    pop local 0
+    push this 0
+    push constant 0
+    eq
+    not
+    if-goto StackStruct_3
+    push constant 0
+    return
+    goto StackStruct_2
+label StackStruct_3
+label StackStruct_2
+    push this 0
+    call StackItem.getPrevious 1
+    push constant 0
+    eq
+    not
+    if-goto StackStruct_5
+    push this 0
+    call StackItem.dispose 1
+    pop temp 0
+    push constant 0
+    pop this 0
+    goto StackStruct_4
+label StackStruct_5
+    push this 0
+    call StackItem.dispose 1
+    pop temp 0
+    push this 0
+    call StackItem.getPrevious 1
+    pop this 0
+label StackStruct_4
+    push local 0
+    return
+function StackStruct.push1 1
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    call StackItem.new 2
+    pop local 0
+    push local 0
+    pop this 0
+    push constant 0
+    return
+function StackStruct.isEmpty 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 0
+    eq
+    return
+function StackStruct.dispose 1
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label StackStruct_6
+    push pointer 0
+    call StackStruct.pop1 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto StackStruct_7
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto StackStruct_6
+label StackStruct_7
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
