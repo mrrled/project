@@ -8,7 +8,7 @@ class Calculator
     {
         let numbers = StackStruct.new();
         let operators = StackStruct.new();
-        let result = null;
+        let result = 0;
         return this;
     }
 
@@ -98,13 +98,8 @@ class Calculator
                 while(~(getPriority(operators.checkHead()) < getPriority(item)))
                 {
                     do operate();
-                    /*do Output.printString("operated ");
-                    do Output.println();*/
                 }
                 do operators.push1(item);
-                /*do Output.printString("pushed oper ");
-                do Output.printInt(item);
-                do Output.println();*/
             }
             else{
             if(IsStringContainsChar(brackets, item))
@@ -112,16 +107,12 @@ class Calculator
                 if(item = brackets.charAt(0))
                 {
                     do operators.push1(item);
-                    /*do Output.printString("pushed bracket ");
-                    do Output.println();*/
                 }
                 else
                 {
                     while(~(operators.checkHead() = brackets.charAt(0)))
                     {
                         do operate();
-                        /*do Output.printString("operated ");
-                        do Output.println();*/
                     }
                     do operators.pop1();
                 }
@@ -129,16 +120,13 @@ class Calculator
             else
             {
                 do numbers.push1(item);
-                /*do Output.printString("pushed num ");
-                do Output.printInt(item);
-                do Output.println();*/
             }
             }
             let i = i + 1;
         }
         let result = numbers.pop1();
-        return result;
         do opers.dispose();
+        return result;
     }
 
     method void dispose(){

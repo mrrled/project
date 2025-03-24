@@ -4,7 +4,7 @@ class TableStructure //работает не трогай (хотя можно �
     static int hat_h, cell_h, enum_h;
     static int scrreen_width, scrreen_height;
 
-    method void setTableParameters()
+    function void setTableParameters()
     {
         var int unit;
         let scrreen_height = 256;
@@ -63,7 +63,7 @@ class TableStructure //работает не трогай (хотя можно �
     {
         var int curr_w; 
         var int curr_h;
-        do setTableParameters();
+        do TableStructure.setTableParameters();
         do Screen.setColor(true);
 
         let curr_w = instr_w;
