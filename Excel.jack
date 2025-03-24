@@ -26,7 +26,7 @@ class Excel
         do CellSelector.start();
         while (~flagEnd)
         {
-            let pressedKey = Keyboard.keyPressed(); //возможно стоит вынести в отдельный метод обработку клавиш
+            let pressedKey = Keyboard.keyPressed();
             if (pressedKey = 140)   //esc (выйти из программы)
             {
                 let flagEnd = true;
@@ -90,9 +90,7 @@ class Excel
                     let intValue = Parser.getLastValue();
                     do Output.printInt(intValue);
                     do table.writeExpression(intValue, stringValue, x, y);
-                }
-                
-                let pressedKey = 0;
+                } 
             }
             if (pressedKey = 119)   //w - write
             {
@@ -113,8 +111,8 @@ class Excel
                 {
                     do table.writeStringCell(stringValue, x, y);
                 }
-                let pressedKey = 0;
             }
+            let pressedKey = 0;
             do Sys.wait(70);
         }
         return;
