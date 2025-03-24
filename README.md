@@ -4,7 +4,7 @@
 
 ## Screenshot
 
-![Excel](./Excel.PNG)
+![Excel](./Excel.png)
 
 ## Game Controls
 
