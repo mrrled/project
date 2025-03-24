@@ -1,0 +1,342 @@
+function Calculator.new 0
+    push constant 3
+    call Memory.alloc 1
+    pop pointer 0
+    call StackStruct.new 0
+    pop this 0
+    call StackStruct.new 0
+    pop this 1
+    push constant 0
+    pop this 2
+    push pointer 0
+    return
+function Calculator.IsStringContainsChar 1
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label Calculator_0
+    push local 0
+    push argument 1
+    call String.length 1
+    lt
+    not
+    if-goto Calculator_1
+    push argument 1
+    push local 0
+    call String.charAt 2
+    push argument 2
+    eq
+    not
+    if-goto Calculator_3
+    push constant 1
+    neg
+    return
+    goto Calculator_2
+label Calculator_3
+label Calculator_2
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Calculator_0
+label Calculator_1
+    push constant 0
+    return
+function Calculator.getPriority 1
+    push argument 0
+    pop pointer 0
+    push constant 4
+    call String.new 1
+    push constant 43
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 42
+    call String.appendChar 2
+    push constant 47
+    call String.appendChar 2
+    pop local 0
+    push local 0
+    push constant 0
+    call String.charAt 2
+    push argument 1
+    eq
+    not
+    if-goto Calculator_5
+    push constant 1
+    return
+    goto Calculator_4
+label Calculator_5
+label Calculator_4
+    push local 0
+    push constant 1
+    call String.charAt 2
+    push argument 1
+    eq
+    not
+    if-goto Calculator_7
+    push constant 1
+    return
+    goto Calculator_6
+label Calculator_7
+label Calculator_6
+    push local 0
+    push constant 2
+    call String.charAt 2
+    push argument 1
+    eq
+    not
+    if-goto Calculator_9
+    push constant 2
+    return
+    goto Calculator_8
+label Calculator_9
+label Calculator_8
+    push local 0
+    push constant 3
+    call String.charAt 2
+    push argument 1
+    eq
+    not
+    if-goto Calculator_11
+    push constant 2
+    return
+    goto Calculator_10
+label Calculator_11
+label Calculator_10
+    push local 0
+    call String.dispose 1
+    pop temp 0
+    push constant 0
+    return
+function Calculator.operate 4
+    push argument 0
+    pop pointer 0
+    push this 0
+    call StackStruct.pop1 1
+    pop local 2
+    push this 0
+    call StackStruct.pop1 1
+    pop local 3
+    push this 1
+    call StackStruct.pop1 1
+    pop local 1
+    push constant 4
+    call String.new 1
+    push constant 43
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 42
+    call String.appendChar 2
+    push constant 47
+    call String.appendChar 2
+    pop local 0
+    push local 0
+    push constant 0
+    call String.charAt 2
+    push local 1
+    eq
+    not
+    if-goto Calculator_13
+    push this 0
+    push local 3
+    push local 2
+    add
+    call StackStruct.push1 2
+    pop temp 0
+    goto Calculator_12
+label Calculator_13
+label Calculator_12
+    push local 0
+    push constant 1
+    call String.charAt 2
+    push local 1
+    eq
+    not
+    if-goto Calculator_15
+    push this 0
+    push local 3
+    push local 2
+    sub
+    call StackStruct.push1 2
+    pop temp 0
+    goto Calculator_14
+label Calculator_15
+label Calculator_14
+    push local 0
+    push constant 2
+    call String.charAt 2
+    push local 1
+    eq
+    not
+    if-goto Calculator_17
+    push this 0
+    push local 3
+    push local 2
+    call Math.multiply 2
+    call StackStruct.push1 2
+    pop temp 0
+    goto Calculator_16
+label Calculator_17
+label Calculator_16
+    push local 0
+    push constant 3
+    call String.charAt 2
+    push local 1
+    eq
+    not
+    if-goto Calculator_19
+    push this 0
+    push local 3
+    push local 2
+    call Math.divide 2
+    call StackStruct.push1 2
+    pop temp 0
+    goto Calculator_18
+label Calculator_19
+label Calculator_18
+    push local 0
+    call String.dispose 1
+    pop temp 0
+    push constant 0
+    return
+function Calculator.calculate 4
+    push argument 0
+    pop pointer 0
+    push constant 4
+    call String.new 1
+    push constant 43
+    call String.appendChar 2
+    push constant 45
+    call String.appendChar 2
+    push constant 42
+    call String.appendChar 2
+    push constant 47
+    call String.appendChar 2
+    pop local 0
+    push constant 2
+    call String.new 1
+    push constant 40
+    call String.appendChar 2
+    push constant 41
+    call String.appendChar 2
+    pop local 3
+    push constant 0
+    pop local 2
+label Calculator_20
+    push local 2
+    push argument 2
+    lt
+    not
+    if-goto Calculator_21
+    push local 2
+    push argument 1
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push pointer 0
+    push local 0
+    push local 1
+    call Calculator.IsStringContainsChar 3
+    not
+    if-goto Calculator_23
+label Calculator_24
+    push pointer 0
+    push this 1
+    call StackStruct.checkHead 1
+    call Calculator.getPriority 2
+    push pointer 0
+    push local 1
+    call Calculator.getPriority 2
+    lt
+    not
+    not
+    if-goto Calculator_25
+    push pointer 0
+    call Calculator.operate 1
+    pop temp 0
+    goto Calculator_24
+label Calculator_25
+    push this 1
+    push local 1
+    call StackStruct.push1 2
+    pop temp 0
+    goto Calculator_22
+label Calculator_23
+    push pointer 0
+    push local 3
+    push local 1
+    call Calculator.IsStringContainsChar 3
+    not
+    if-goto Calculator_27
+    push local 1
+    push local 3
+    push constant 0
+    call String.charAt 2
+    eq
+    not
+    if-goto Calculator_29
+    push this 1
+    push local 1
+    call StackStruct.push1 2
+    pop temp 0
+    goto Calculator_28
+label Calculator_29
+label Calculator_30
+    push this 1
+    call StackStruct.checkHead 1
+    push local 3
+    push constant 0
+    call String.charAt 2
+    eq
+    not
+    not
+    if-goto Calculator_31
+    push pointer 0
+    call Calculator.operate 1
+    pop temp 0
+    goto Calculator_30
+label Calculator_31
+    push this 1
+    call StackStruct.pop1 1
+    pop temp 0
+label Calculator_28
+    goto Calculator_26
+label Calculator_27
+    push this 0
+    push local 1
+    call StackStruct.push1 2
+    pop temp 0
+label Calculator_26
+label Calculator_22
+    push local 2
+    push constant 1
+    add
+    pop local 2
+    goto Calculator_20
+label Calculator_21
+    push this 0
+    call StackStruct.pop1 1
+    pop this 2
+    push this 2
+    return
+    push local 0
+    call String.dispose 1
+    pop temp 0
+function Calculator.dispose 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    call StackStruct.dispose 1
+    pop temp 0
+    push this 1
+    call StackStruct.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return

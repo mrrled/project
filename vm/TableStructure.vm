@@ -1,0 +1,185 @@
+function TableStructure.setTableParameters 1
+    push argument 0
+    pop pointer 0
+    push constant 256
+    pop static 8
+    push constant 512
+    pop static 7
+    push static 8
+    push constant 8
+    call Math.divide 2
+    pop local 0
+    push local 0
+    pop static 5
+    push local 0
+    pop static 6
+    push local 0
+    push constant 2
+    call Math.multiply 2
+    pop static 4
+    push local 0
+    push constant 3
+    call Math.multiply 2
+    pop static 0
+    push local 0
+    pop static 1
+    push local 0
+    push constant 2
+    call Math.multiply 2
+    pop static 3
+    push local 0
+    push constant 3
+    call Math.multiply 2
+    pop static 2
+    push constant 0
+    return
+function TableStructure.writeEnumsX 3
+    push constant 1
+    pop local 0
+    push constant 10
+    pop local 2
+    push constant 14
+    pop local 1
+label TableStructure_0
+    push local 0
+    push constant 6
+    lt
+    not
+    if-goto TableStructure_1
+    push local 2
+    push local 1
+    call Output.moveCursor 2
+    pop temp 0
+    push local 0
+    call Output.printInt 1
+    pop temp 0
+    push local 2
+    push constant 3
+    add
+    pop local 2
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto TableStructure_0
+label TableStructure_1
+    push constant 0
+    return
+function TableStructure.writeEnumsY 3
+    push constant 0
+    pop local 0
+    push constant 7
+    pop local 2
+    push constant 21
+    pop local 1
+label TableStructure_2
+    push local 0
+    push constant 4
+    lt
+    not
+    if-goto TableStructure_3
+    push local 2
+    push local 1
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 65
+    push local 0
+    add
+    call Output.printChar 1
+    pop temp 0
+    push local 1
+    push constant 12
+    add
+    pop local 1
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto TableStructure_2
+label TableStructure_3
+    push constant 0
+    return
+function TableStructure.drawTable 2
+    push pointer 0
+    call TableStructure.setTableParameters 1
+    pop temp 0
+    push constant 1
+    neg
+    call Screen.setColor 1
+    pop temp 0
+    push static 0
+    pop local 0
+    push local 0
+    push constant 0
+    push local 0
+    push static 8
+    call Screen.drawLine 4
+    pop temp 0
+    push local 0
+    push static 3
+    add
+    pop local 0
+    push local 0
+    push constant 0
+    push local 0
+    push static 4
+    call Screen.drawLine 4
+    pop temp 0
+    push static 0
+    push static 1
+    add
+    pop local 0
+label TableStructure_4
+    push local 0
+    push static 7
+    lt
+    not
+    if-goto TableStructure_5
+    push local 0
+    push static 4
+    push local 0
+    push static 8
+    call Screen.drawLine 4
+    pop temp 0
+    push local 0
+    push static 2
+    add
+    pop local 0
+    goto TableStructure_4
+label TableStructure_5
+    push static 4
+    pop local 1
+    push static 0
+    push local 1
+    push static 7
+    push local 1
+    call Screen.drawLine 4
+    pop temp 0
+    push static 4
+    push static 6
+    add
+    pop local 1
+label TableStructure_6
+    push local 1
+    push static 8
+    lt
+    not
+    if-goto TableStructure_7
+    push static 0
+    push local 1
+    push static 7
+    push local 1
+    call Screen.drawLine 4
+    pop temp 0
+    push local 1
+    push static 5
+    add
+    pop local 1
+    goto TableStructure_6
+label TableStructure_7
+    call TableStructure.writeEnumsY 0
+    pop temp 0
+    call TableStructure.writeEnumsX 0
+    pop temp 0
+    push constant 0
+    return

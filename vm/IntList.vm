@@ -1,0 +1,289 @@
+function IntList.new 0
+    push constant 3
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 0
+    pop this 2
+    push constant 0
+    pop this 0
+    push constant 0
+    pop this 1
+    push pointer 0
+    return
+function IntList.add 1
+    push argument 0
+    pop pointer 0
+    push this 0
+    push constant 0
+    eq
+    not
+    if-goto IntList_1
+    push argument 1
+    push constant 0
+    push constant 0
+    push constant 0
+    call IntListItem.new 4
+    pop this 0
+    push this 0
+    pop this 1
+    goto IntList_0
+label IntList_1
+    push this 1
+    pop local 0
+    push argument 1
+    push constant 0
+    push this 1
+    push this 1
+    call IntListItem.getIndex 1
+    push constant 1
+    add
+    call IntListItem.new 4
+    pop this 1
+    push local 0
+    push this 1
+    call IntListItem.setNext 2
+    pop temp 0
+label IntList_0
+    push this 2
+    push constant 1
+    add
+    pop this 2
+    push constant 0
+    return
+function IntList.removeAtLast 1
+    push argument 0
+    pop pointer 0
+    push this 1
+    push constant 0
+    eq
+    not
+    if-goto IntList_3
+    push constant 0
+    return
+    goto IntList_2
+label IntList_3
+label IntList_2
+    push this 1
+    push this 0
+    eq
+    not
+    if-goto IntList_5
+    push this 1
+    pop local 0
+    push constant 0
+    pop this 1
+    push constant 0
+    pop this 0
+    push local 0
+    call IntListItem.dispose 1
+    pop temp 0
+    push constant 0
+    return
+    goto IntList_4
+label IntList_5
+label IntList_4
+    push this 1
+    pop local 0
+    push this 1
+    call IntListItem.getPrev 1
+    pop this 1
+    push this 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto IntList_7
+    push this 1
+    push constant 0
+    call IntListItem.setNext 2
+    pop temp 0
+    goto IntList_6
+label IntList_7
+label IntList_6
+    push local 0
+    call IntListItem.dispose 1
+    pop temp 0
+    push this 2
+    push constant 1
+    sub
+    pop this 2
+    push constant 0
+    return
+function IntList.changeAtIndex 2
+    push argument 0
+    pop pointer 0
+    push this 0
+    pop local 0
+    push constant 0
+    pop local 1
+    push argument 1
+    push this 2
+    gt
+    push argument 1
+    or
+    push this 2
+    eq
+    not
+    if-goto IntList_9
+    push constant 0
+    return
+    goto IntList_8
+label IntList_9
+label IntList_8
+label IntList_10
+    push local 1
+    push argument 1
+    lt
+    not
+    if-goto IntList_11
+    push local 0
+    call IntListItem.getNext 1
+    pop local 0
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto IntList_10
+label IntList_11
+    push local 0
+    push argument 2
+    call IntListItem.setData 2
+    pop temp 0
+    push constant 0
+    return
+function IntList.takeAtIndex 2
+    push argument 0
+    pop pointer 0
+    push this 0
+    pop local 0
+    push constant 0
+    pop local 1
+    push argument 1
+    push this 2
+    gt
+    push argument 1
+    or
+    push this 2
+    eq
+    not
+    if-goto IntList_13
+    push constant 15
+    call Sys.error 1
+    pop temp 0
+    goto IntList_12
+label IntList_13
+label IntList_12
+label IntList_14
+    push local 1
+    push argument 1
+    lt
+    not
+    if-goto IntList_15
+    push local 0
+    call IntListItem.getNext 1
+    pop local 0
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto IntList_14
+label IntList_15
+    push local 0
+    call IntListItem.getData 1
+    return
+function IntList.dispose 1
+    push argument 0
+    pop pointer 0
+    push this 0
+    pop local 0
+label IntList_16
+    push this 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto IntList_17
+    push this 0
+    call IntListItem.getNext 1
+    pop this 0
+    push local 0
+    call IntListItem.dispose 1
+    pop temp 0
+    push this 0
+    pop local 0
+    goto IntList_16
+label IntList_17
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function IntList.print 1
+    push argument 0
+    pop pointer 0
+    push this 0
+    pop local 0
+label IntList_18
+    push local 0
+    push constant 0
+    eq
+    not
+    not
+    if-goto IntList_19
+    push local 0
+    call IntListItem.getData 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 32
+    call Output.printChar 1
+    pop temp 0
+    push local 0
+    call IntListItem.getNext 1
+    pop local 0
+    goto IntList_18
+label IntList_19
+    push constant 0
+    return
+function IntList.toArray 2
+    push argument 0
+    pop pointer 0
+    push this 2
+    call Array.new 1
+    pop local 0
+    push this 0
+    pop local 1
+label IntList_20
+    push local 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto IntList_21
+    push local 1
+    call IntListItem.getIndex 1
+    push local 0
+    add
+    push local 1
+    call IntListItem.getData 1
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push local 1
+    call IntListItem.getNext 1
+    pop local 1
+    goto IntList_20
+label IntList_21
+    push constant 1
+    call String.new 1
+    push constant 32
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push local 0
+    return
+function IntList.getLength 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return

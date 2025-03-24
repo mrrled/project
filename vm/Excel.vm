@@ -1,0 +1,326 @@
+function Excel.start 0
+    push constant 4
+    push constant 5
+    call Table.new 2
+    pop static 0
+    push constant 4
+    push constant 5
+    call Pointer.new 2
+    pop static 3
+    push constant 0
+    pop static 2
+    call TableStructure.drawTable 0
+    pop temp 0
+    call StartInstruction.draw 0
+    pop temp 0
+    push constant 0
+    return
+function Excel.run 7
+    call CellSelector.start 0
+    pop temp 0
+label Excel_0
+    push static 2
+    not
+    not
+    if-goto Excel_1
+    call Keyboard.keyPressed 0
+    pop static 1
+    push static 1
+    push constant 140
+    eq
+    not
+    if-goto Excel_3
+    push constant 1
+    neg
+    pop static 2
+    goto Excel_2
+label Excel_3
+label Excel_2
+    push static 1
+    push constant 130
+    eq
+    not
+    if-goto Excel_5
+    push static 3
+    call Pointer.toLeft 1
+    pop temp 0
+    push static 3
+    call Pointer.getX 1
+    pop local 0
+    push static 3
+    call Pointer.getY 1
+    pop local 1
+    push static 0
+    push local 0
+    push local 1
+    call Table.getCell 3
+    pop local 4
+    push local 4
+    call Cell.getType 1
+    pop local 5
+    push local 4
+    call Cell.getString 1
+    pop local 6
+    push local 0
+    push local 1
+    push local 5
+    push local 6
+    call CellSelector.selectNext 4
+    pop temp 0
+    goto Excel_4
+label Excel_5
+label Excel_4
+    push static 1
+    push constant 132
+    eq
+    not
+    if-goto Excel_7
+    push static 3
+    call Pointer.toRight 1
+    pop temp 0
+    push static 3
+    call Pointer.getX 1
+    pop local 0
+    push static 3
+    call Pointer.getY 1
+    pop local 1
+    push static 0
+    push local 0
+    push local 1
+    call Table.getCell 3
+    pop local 4
+    push local 4
+    call Cell.getType 1
+    pop local 5
+    push local 4
+    call Cell.getString 1
+    pop local 6
+    push local 0
+    push local 1
+    push local 5
+    push local 6
+    call CellSelector.selectNext 4
+    pop temp 0
+    goto Excel_6
+label Excel_7
+label Excel_6
+    push static 1
+    push constant 131
+    eq
+    not
+    if-goto Excel_9
+    push static 3
+    call Pointer.toUp 1
+    pop temp 0
+    push static 3
+    call Pointer.getX 1
+    pop local 0
+    push static 3
+    call Pointer.getY 1
+    pop local 1
+    push static 0
+    push local 0
+    push local 1
+    call Table.getCell 3
+    pop local 4
+    push local 4
+    call Cell.getType 1
+    pop local 5
+    push local 4
+    call Cell.getString 1
+    pop local 6
+    push local 0
+    push local 1
+    push local 5
+    push local 6
+    call CellSelector.selectNext 4
+    pop temp 0
+    goto Excel_8
+label Excel_9
+label Excel_8
+    push static 1
+    push constant 133
+    eq
+    not
+    if-goto Excel_11
+    push static 3
+    call Pointer.toDown 1
+    pop temp 0
+    push static 3
+    call Pointer.getX 1
+    pop local 0
+    push static 3
+    call Pointer.getY 1
+    pop local 1
+    push static 0
+    push local 0
+    push local 1
+    call Table.getCell 3
+    pop local 4
+    push local 4
+    call Cell.getType 1
+    pop local 5
+    push local 4
+    call Cell.getString 1
+    pop local 6
+    push local 0
+    push local 1
+    push local 5
+    push local 6
+    call CellSelector.selectNext 4
+    pop temp 0
+    goto Excel_10
+label Excel_11
+label Excel_10
+    push static 1
+    push constant 61
+    eq
+    not
+    if-goto Excel_13
+    push static 3
+    call Pointer.getX 1
+    pop local 0
+    push static 3
+    call Pointer.getY 1
+    pop local 1
+    push local 0
+    push local 1
+    call CellSelector.drawEmptyCell 2
+    pop temp 0
+    push constant 163
+    push constant 0
+    push constant 512
+    push constant 60
+    call Screen.drawRectangle 4
+    pop temp 0
+    push constant 2
+    push constant 21
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 0
+    call String.new 1
+    call Keyboard.readLine 1
+    pop local 2
+    push local 2
+    call Parser.isCorrectExpression 1
+    push constant 1
+    neg
+    eq
+    not
+    if-goto Excel_15
+    push constant 3
+    push local 1
+    call Math.multiply 2
+    push constant 10
+    add
+    push local 0
+    push constant 12
+    call Math.multiply 2
+    push constant 17
+    add
+    call Output.moveCursor 2
+    pop temp 0
+    call Parser.getLastValue 0
+    pop local 3
+    push local 3
+    call Output.printInt 1
+    pop temp 0
+    push static 0
+    push local 3
+    push local 2
+    push local 0
+    push local 1
+    call Table.writeExpression 5
+    pop temp 0
+    goto Excel_14
+label Excel_15
+label Excel_14
+    goto Excel_12
+label Excel_13
+label Excel_12
+    push static 1
+    push constant 119
+    eq
+    not
+    if-goto Excel_17
+    push static 3
+    call Pointer.getX 1
+    pop local 0
+    push static 3
+    call Pointer.getY 1
+    pop local 1
+    push local 0
+    push local 1
+    call CellSelector.drawEmptyCell 2
+    pop temp 0
+    push constant 3
+    push local 1
+    call Math.multiply 2
+    push constant 10
+    add
+    push local 0
+    push constant 12
+    call Math.multiply 2
+    push constant 17
+    add
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 0
+    call String.new 1
+    call Keyboard.readLine 1
+    pop local 2
+    push local 2
+    call Parser.isNumber 1
+    push constant 1
+    neg
+    eq
+    not
+    if-goto Excel_19
+    call Parser.getLastValue 0
+    pop local 3
+    push static 0
+    push local 3
+    push local 0
+    push local 1
+    call Table.writeIntCell 4
+    pop temp 0
+    push local 0
+    push local 1
+    call CellSelector.drawEmptyCell 2
+    pop temp 0
+    push constant 3
+    push local 1
+    call Math.multiply 2
+    push constant 10
+    add
+    push local 0
+    push constant 12
+    call Math.multiply 2
+    push constant 17
+    add
+    call Output.moveCursor 2
+    pop temp 0
+    push local 3
+    call Output.printInt 1
+    pop temp 0
+    goto Excel_18
+label Excel_19
+    push static 0
+    push local 2
+    push local 0
+    push local 1
+    call Table.writeStringCell 4
+    pop temp 0
+label Excel_18
+    goto Excel_16
+label Excel_17
+label Excel_16
+    push constant 0
+    pop static 1
+    push constant 70
+    call Sys.wait 1
+    pop temp 0
+    goto Excel_0
+label Excel_1
+    push constant 0
+    return
